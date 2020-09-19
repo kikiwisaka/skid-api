@@ -1,0 +1,20 @@
+{
+    "sample_data": {
+        "projects": [{
+            "id": 1,
+            "name": "Covid-19"
+        }, {
+            "id": 2,
+            "name": "Tsunami Palu"
+        }],
+        "beneficiaries": [{
+            "id": 1,
+            "name": "Rusmawi",
+            "is_verified": false
+        }, {
+            "id": 2,
+            "name": "Jarwadi",
+            "is_verified": true
+        }]
+    }
+}
