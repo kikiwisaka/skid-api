@@ -38,14 +38,6 @@ router.post('/',
                     }]
                 });
             }
-            // if (user) {
-            //     console.log(user);
-            //     return res.sendStatus(400).json({
-            //         errors: [{
-            //             msg: 'User already exist'
-            //         }]
-            //     });
-            // }
             user = new User({
                 name,
                 email,
