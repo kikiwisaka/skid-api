@@ -1,5 +1,14 @@
 {
     "sample_data": {
+        "users": [{
+            "id": 1,
+            "name": "Kiki Wisaka",
+            "role": "administrator"
+        }, {
+            "id": 2,
+            "name": "Dia",
+            "role": "admin"
+        }],
         "projects": [{
             "id": 1,
             "name": "Covid-19"
