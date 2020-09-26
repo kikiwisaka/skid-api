@@ -9,9 +9,6 @@ const {
 } = require("express-validator");
 const Charity = require("../models/Charity");
 
-router.get('/', async (req, res) => {
-    res.send('charities router');
-});
 
 router.post('/',
     [
@@ -29,7 +26,6 @@ router.post('/',
             name,
             description
         } = req.body;
-
         try {
             let charity = await Charity.findOne({
                 name
@@ -45,12 +41,27 @@ router.post('/',
                 name,
                 description
             });
+            console.log(`charity before saving to db: ${charity}`);
             await charity.save();
             console.log('charity saved');
+            console.log(charity);
+            res.json('Create new charity successful');
         } catch (err) {
             console.error(err.message);
             res.sendStatus(500).json("Internal server error");
         }
     });
+
+router.get('/', async (req, res) => {
+    try {
+        const charities = await Charity.find();
+        res.json(charities);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Internal server error');
+    }
+    res.send('charities router');
+});
+
 
 module.exports = router;

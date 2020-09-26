@@ -19,11 +19,49 @@
         "beneficiaries": [{
             "id": 1,
             "name": "Rusmawi",
+            "jobTitle": "job name",
+            "address": "",
+            "province": "",
+            "phoneNumber": "",
+            "lat": "2311",
+            "lon": "33424",
+            "altitude": "1231",
+            "ktp": "https://sdjskdjs.com/sldjsdjsd",
+            "kartuKeluarga": "https://sdjskdjs.com/4342dfsjkd",
             "is_verified": false
         }, {
             "id": 2,
             "name": "Jarwadi",
-            "is_verified": true
+            "jobTitle": "job name",
+            "address": "",
+            "province": "",
+            "phoneNumber": "",
+            "lat": "2311",
+            "lon": "33424",
+            "altitude": "1231",
+            "ktp": "https://sdjskdjs.com/sldjsdjsd",
+            "kartuKeluarga": "https://sdjskdjs.com/4342dfsjkd",
+            "is_verified": true,
+            "donation": [{
+                    "donationId": 1,
+                    "amount": 4000
+                },
+                {
+                    "donationId": 2,
+                    "amount": 3000
+                }
+            ]
+        }],
+        "donation": [{
+            "id": 1,
+            "amount": "4000",
+            "name": "Dermawan",
+            "email": "email@dermawan.com",
+            "projectId": 1,
+            "beneficiaryId": "1",
+            "paymentChannel": "Bank Transfer",
+            "createDate": 213231321,
+            "completeDate": 2434234
         }]
     }
 }
