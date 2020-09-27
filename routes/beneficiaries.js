@@ -8,7 +8,16 @@ const {
     validationResult
 } = require("express-validator");
 const Beneficiary = require("../models/Beneficiary");
-const Donation = require("../models/Donation");
+
+router.get('/', async (req, res) => {
+    try {
+        const beneficiaries = await Beneficiary.find();
+        res.json(beneficiaries);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Internal server error');
+    }
+});
 
 router.post('/',
     [
@@ -20,6 +29,7 @@ router.post('/',
         check("phone_number", "Phone Number is required").not().isEmpty(),
         check("ktp", "KTP is required").not().isEmpty(),
         check("kartu_keluarga", "Kartu Kelauaga is required").not().isEmpty(),
+        check("thumbnail", "Photo is required").not().isEmpty(),
         check("is_verified", "Verify is required").not().isEmpty()
     ],
     async (req, res) => {
@@ -41,6 +51,7 @@ router.post('/',
             alt,
             ktp,
             kartu_keluarga,
+            thumbnail,
             is_verified
         } = req.body;
         try {
@@ -56,6 +67,7 @@ router.post('/',
                 alt,
                 ktp,
                 kartu_keluarga,
+                thumbnail,
                 is_verified
             });
             console.log(`beneficiary: ${beneficiary}`);
@@ -65,5 +77,21 @@ router.post('/',
             res.status(500).send('Internal server error');
         }
     });
+
+router.get('/:beneficiary_id', async ({
+    params: {
+        beneficiary_id
+    }
+}, res) => {
+    try {
+        const beneficiary = await Beneficiary.findOne({
+            _id: beneficiary_id
+        });
+        res.json(beneficiary);
+    } catch (errors) {
+        console.error(errors.message);
+        res.status(500).send('Internal server error');
+    }
+});
 
 module.exports = router;

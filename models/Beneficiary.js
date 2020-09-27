@@ -42,10 +42,22 @@ const BeneficiarySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    thumbnail: {
+        type: String,
+        required: true,
+    },
     is_verified: {
         type: Boolean,
         required: true,
     },
+    donation: [{
+        donation_id: {
+            type: String
+        },
+        amount: {
+            type: Number
+        }
+    }]
 });
 
 module.exports = Beneficiary = mongoose.model('beneficiary', BeneficiarySchema);

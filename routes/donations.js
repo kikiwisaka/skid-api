@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require('../middleware/auth');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
@@ -8,6 +9,18 @@ const {
     validationResult
 } = require("express-validator");
 const Donation = require("../models/Donation");
+const Beneficiary = require('../models/Beneficiary');
+
+
+router.get('/', auth, async (req, res) => {
+    try {
+        const donations = await Donation.find();
+        res.json(donations);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Internal server error');
+    }
+});
 
 router.post('/',
     [
@@ -23,7 +36,6 @@ router.post('/',
                 errors: errors.array()
             })
         }
-        console.log(req.body);
         const {
             name,
             email,
@@ -47,6 +59,19 @@ router.post('/',
             });
             console.log(`donation: ${donation}`);
             await donation.save();
+
+            //insert donation to beneficiary
+            await Beneficiary.findOneAndUpdate({
+                _id: beneficiary_id
+            }, {
+                $addToSet: {
+                    'donation': {
+                        'donation_id': donation.id,
+                        'amount': donation.amount
+                    }
+                }
+            });
+
             res.json('Thank you for donation');
         } catch (error) {
             console.error(error.message);
