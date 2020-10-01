@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://dba:hQgFdPQR9qElen2v@skid-proto.m71fg.mongodb.net/skid-proto?retryWrites=true&w=majority",
+    "jwtSecret": "sjhfashfjashfsbvrerowietugsdkgjsfldkghvdjfkh"
+}
