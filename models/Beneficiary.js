@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const BeneficiarySchema = new mongoose.Schema({
+    charity: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'charity'
+    },
     name: {
         type: String,
         required: true,
@@ -42,10 +46,22 @@ const BeneficiarySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    thumbnail: {
+        type: String,
+        required: true,
+    },
     is_verified: {
         type: Boolean,
         required: true,
     },
+    donation: [{
+        donation_id: {
+            type: String
+        },
+        amount: {
+            type: Number
+        }
+    }]
 });
 
 module.exports = Beneficiary = mongoose.model('beneficiary', BeneficiarySchema);
